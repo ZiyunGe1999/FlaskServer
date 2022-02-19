@@ -4,6 +4,24 @@
 <head>
     <title>HW6</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function changeSVGColor(id, color) {
+            document.getElementById(id).getSVGDocument().querySelector("svg").style.color = color;
+        }
+
+        function addEvent(id) {
+            var elem = document.getElementById(id);
+            elem.addEventListener('mouseenter', function (){
+                changeSVGColor(id, 'black');
+            });
+            elem.addEventListener('mouseout', function (){
+                changeSVGColor(id, '#9a9a9a');
+            });
+            elem.addEventListener('click', function (){
+                changeSVGColor(id, 'red');
+            });
+        }
+    </script>
 </head>
 
 <body>
@@ -14,11 +32,15 @@
         <div id="search_form">
             <form name="stock_form" method="get">
                 <div id="search_left">
-                <img id="search_solid" onclick="stock_form.submit();" src="{{ url_for('static', filename='images/search-solid.svg') }}">
+{#                <img id="search_solid" onclick="stock_form.submit();" src="{{ url_for('static', filename='images/search-solid.svg') }}">#}
+                    <embed id="search_solid" src="{{ url_for('static', filename='images/search-solid.svg') }}" type="image/svg+xml">
+                    <script>addEvent('search_solid')</script>
                 </div>
                 <input type="text" id="stock" name="stock">
                 <div id="search_right">
-                <img id="search_times" src="{{ url_for('static', filename='images/times-solid.svg') }}">
+{#                <img id="search_times" src="{{ url_for('static', filename='images/times-solid.svg') }}">#}
+                    <embed id="search_times" src="{{ url_for('static', filename='images/times-solid.svg') }}" type="image/svg+xml">
+                    <script>addEvent('search_times')</script>
                 </div>
             </form>
         </div>

@@ -25,12 +25,14 @@ body {
 #search_solid {
     width: 15px;
     margin-top: 15px;
+    color: #a9a9a9;
     /*fill: #a9a9a9;*/
     /*filter: drop-shadow(#a9a9a9 0 0);*/
 }
 
 svg {
-    fill: #a9a9a9;
+    /*fill: #a9a9a9;*/
+    /*color: #a9a9a9;*/
 }
 
 #search_solid:hover {
