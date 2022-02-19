@@ -1,0 +1,95 @@
+body {
+    margin: 0px;
+    background-image: url('./images/back.svg');
+    background-attachment: fixed;
+    /*background-size: 100%;*/
+    background-repeat:repeat-x;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+#search_bar {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    min-width: 1000px;
+    height: 200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#search_title {
+    font-size: 200%;
+}
+
+#search_solid {
+    width: 15px;
+    margin-top: 15px;
+    /*fill: #a9a9a9;*/
+    /*filter: drop-shadow(#a9a9a9 0 0);*/
+}
+
+svg {
+    fill: #a9a9a9;
+}
+
+#search_solid:hover {
+    /*fill: black;*/
+}
+
+#search_form {
+    display: inline-block;
+    margin: 15px;
+    width: 50%;
+    background-color: white;
+    height: 55px;
+    border-radius: 10px;
+    /*border: 1px solid #ccc;*/
+    box-shadow: 5px 5px 3px #ccc;
+    padding: 5px;
+}
+
+#search_left {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 30px;
+    /*background-color: white;*/
+}
+
+#search_right {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 30px;
+    border-left: 2px solid 	#a9a9a9;
+    /*margin: 5px;*/
+}
+
+#search_times {
+    width: 15px;
+    margin-top: 15px;
+    margin-left: 70%;
+}
+
+input[type=text], select {
+  width: 80%;
+  padding: 5px 5px;
+  /*margin: 15px;*/
+  display: inline-block;
+    border: 0px;
+  /*border-bottom: 1px solid #ccc;*/
+  /*  border-top: 1px solid #ccc;*/
+  /*  border-left: 0px;*/
+  /*  border-right: 0px;*/
+  /*border-radius: 4px;*/
+  box-sizing: border-box;
+    outline: none;
+    font-size: 25px;
+}
+
+form {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+}

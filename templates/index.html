@@ -3,14 +3,26 @@
 
 <head>
     <title>HW6</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <p id="Home">Home</p>
-    <p id="Services">Services</p>
-    <p id="About">About</p>
-    <p id="Gallery">Gallery</p>
-    <p id="Contact">Contact</p>
+    <div id="search_bar">
+        <div id="search_title">
+            Stock Search
+        </div>
+        <div id="search_form">
+            <form name="stock_form" method="get">
+                <div id="search_left">
+                <img id="search_solid" onclick="stock_form.submit();" src="{{ url_for('static', filename='images/search-solid.svg') }}">
+                </div>
+                <input type="text" id="stock" name="stock">
+                <div id="search_right">
+                <img id="search_times" src="{{ url_for('static', filename='images/times-solid.svg') }}">
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
