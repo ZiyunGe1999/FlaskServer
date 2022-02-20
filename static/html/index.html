@@ -36,6 +36,47 @@
             </div>
         </div>
     </div>
+
+    <div id="graph_area">
+        <div id="graph_titles">
+            <div class="title" id="title_graph_company" onclick="graphHandler('graph_company')">Company</div><div class="title" id="title_graph_stock_summary" onclick="graphHandler('graph_stock_summary')">Stock Summary</div><div class="title" id="title_graph_charts" onclick="graphHandler('graph_charts')">Charts</div><div class="title" id="title_graph_latest_news" onclick="graphHandler('graph_latest_news')">Latest News</div>
+        </div>
+        <div id="graph_sub_reference">
+            <div class="graph_sub" id="graph_company">
+                graph_company
+                <div class="table_line">
+                    <img id="graph_company_img" src=?>
+                </div>
+                <div class="table_line">
+                    <table class="table_table">
+                        <tr>
+                            <td class="td1 first_line">Company Name</td>
+                            <td class="td2 first_line" id="company_name">?</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Stock Ticker Symbol</td>
+                            <td class="td2" id="stock_ticker_symbol">?</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Stock Exchange Code</td>
+                            <td class="td2" id="stock_exchange_code">?</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Company Start Date</td>
+                            <td class="td2" id="company_start_date">?</td>
+                        </tr>
+                        <tr>
+                            <td class="td1">Category</td>
+                            <td class="td2" id="category">?</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="graph_sub" id="graph_stock_summary">graph_stock_summary</div>
+            <div class="graph_sub" id="graph_charts">graph_charts</div>
+            <div class="graph_sub" id="graph_latest_news">graph_latest_news</div>
+        </div>
+    </div>
 </body>
 
 </html>

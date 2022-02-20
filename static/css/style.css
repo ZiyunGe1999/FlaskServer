@@ -99,7 +99,8 @@ form {
     width: 300px;
     height: 60px;
     /*background-color: darkgrey;*/
-    opacity: 0;
+    /*opacity: 0;*/
+    visibility: hidden;
 }
 
 .triangle {
@@ -162,4 +163,103 @@ form {
     left: 35px;
     width: 170px;
     color: black;
+}
+
+#graph_area {
+    display: inline-block;
+    position: relative;
+    width: 80%;
+    min-width: 1000px;
+    /*height: 200px;*/
+    margin-top: 50px;
+    /*margin-bottom: 50px;*/
+    /*background-color: darkgrey;*/
+}
+
+#graph_titles {
+    display: block;
+    height: 50px;
+    background-color: #F7FBF9;
+    text-align: left;
+}
+
+.title {
+    display: inline-block;
+    /*width: 200px;*/
+    height: 30px;
+    /*background-color: #FFAB04;*/
+    text-align: center;
+    padding-top: 20px;
+    /*border: 2px solid black;*/
+}
+
+.title:hover {
+    background-color: #E2E1E2;
+}
+
+#title_graph_company {
+    width: 120px;
+}
+
+#title_graph_stock_summary {
+    width: 170px;
+}
+
+#title_graph_charts {
+    width: 100px;
+}
+
+#title_graph_latest_news {
+    width: 170px;
+}
+
+#graph_sub_reference {
+    display: block;
+    position: relative;
+    width: 100%;
+    /*height: 80px;*/
+    /*top: 100px;*/
+    /*left: 100px;*/
+    /*background-color: #FFAB04;*/
+}
+
+.graph_sub {
+    display: block;
+    position: absolute;
+    /*background-color: darkgrey;*/
+    width: 100%;
+    /*height: 50px;*/
+    text-align: center;
+    visibility: hidden;
+}
+
+.table_line {
+    display: block;
+}
+
+.table_table {
+    /*display: inline-block;*/
+    margin: auto;
+    position: relative;
+    width: 70%;
+}
+
+.table_table td {
+    width: 50%;
+    padding: 5px;
+    border-bottom: 1px solid #E2E1E2;
+}
+
+.first_line {
+    border-top: 1px solid #E2E1E2;
+}
+
+.td1 {
+    text-align: right;
+    font-weight: bold;
+}
+
+.td2 {
+    text-align: left;
+    font-weight: lighter;
 }

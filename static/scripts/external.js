@@ -1,3 +1,13 @@
+var infos;
+var title_status = {
+    'graph_company' : false,
+    'graph_stock_summary' : false,
+    'graph_charts' : false,
+    'graph_latest_news' : false
+};
+
+var selected = '#D2D1D2';
+
 function changeSVGColor(elem, color) {
     elem.getSVGDocument().querySelector("svg").style.color = color;
 }
@@ -31,9 +41,9 @@ function addDeleteEvent(id) {
     });
 }
 
-function setWarningBoxOpacity (opacity_value) {
+function setWarningBoxVisibility (status) {
     var elem = document.getElementById('empty_warning');
-    elem.style.opacity = opacity_value;
+    elem.style.visibility = status;
 }
 
 function sendData(form) {
@@ -42,7 +52,13 @@ function sendData(form) {
 
     // 我们定义了数据成功发送时会发生的事。
     XHR.addEventListener("load", function(event) {
-      alert(event.target.responseText);
+      // alert(event.target.responseText);
+        console.log('get infos');
+        infos = JSON.parse(event.target.responseText);
+        setTitleStatus('graph_company');
+        refreshGraphCompany();
+        setAllGraphHidden();
+        setVisible('graph_company');
     });
 
     // 我们定义了失败的情形下会发生的事
@@ -57,8 +73,8 @@ function sendData(form) {
         XHR.send()
     }
     else {
-        setWarningBoxOpacity(1);
-        setTimeout("setWarningBoxOpacity(0)", 4000);
+        setWarningBoxVisibility('visible');
+        setTimeout("setWarningBoxVisibility('hidden')", 4000);
     }
   }
 
@@ -70,6 +86,57 @@ function takeOverFormSubmit() {
         event.preventDefault();
         sendData(form);
     });
+}
+
+function getImageUrl() {
+    return infos['logo'];
+}
+
+function setVisible(id) {
+    document.getElementById(id).style.visibility = 'visible';
+}
+
+function setHidden(id) {
+    document.getElementById(id).style.visibility = 'hidden';
+}
+
+function setAllGraphHidden() {
+    var titles = ['graph_company', 'graph_stock_summary', 'graph_charts', 'graph_latest_news'];
+    for (var i = 0; i < titles.length; i++) {
+        setHidden(titles[i]);
+    }
+}
+
+function setTitleStatus(id) {
+    for(let k in title_status) {
+        if (k == id) {
+            title_status[k] = true;
+            document.getElementById('title_' + k).style.backgroundColor = selected;
+        }
+        else {
+            title_status[k] = false;
+            document.getElementById('title_' + k).style.removeProperty('background-color');
+        }
+    }
+}
+
+function refreshGraphCompany() {
+    document.getElementById('graph_company_img').src = infos['logo'];
+    document.getElementById('company_name').innerHTML = infos['name'];
+    document.getElementById('stock_ticker_symbol').innerHTML = infos['ticker'];
+    document.getElementById('stock_exchange_code').innerHTML = infos['exchange'];
+    document.getElementById('company_start_date').innerHTML = infos['ipo'];
+    document.getElementById('category').innerHTML = infos['finnhubIndustry'];
+}
+
+function graphHandler(id) {
+    console.log('handle ' + id);
+    setTitleStatus(id);
+    if (id == 'graph_company') {
+        refreshGraphCompany();
+    }
+    setAllGraphHidden();
+    setVisible(id);
 }
 
 window.onload = function(){
