@@ -31,6 +31,11 @@ function addDeleteEvent(id) {
     });
 }
 
+function setWarningBoxOpacity (opacity_value) {
+    var elem = document.getElementById('empty_warning');
+    elem.style.opacity = opacity_value;
+}
+
 function sendData(form) {
     var XHR = new XMLHttpRequest();
     var FD  = new FormData(form);
@@ -50,6 +55,10 @@ function sendData(form) {
         // 我们设置了我们的请求
         XHR.open("get", "/search?stock=" + stock_value, true);
         XHR.send()
+    }
+    else {
+        setWarningBoxOpacity(1);
+        setTimeout("setWarningBoxOpacity(0)", 4000);
     }
   }
 
