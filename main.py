@@ -14,7 +14,7 @@
 
 # [START gae_python38_app]
 # [START gae_python3_app]
-from flask import Flask, render_template
+from flask import Flask, request, jsonify
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
@@ -23,11 +23,19 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def index():
     """Return a friendly HTTP greeting."""
-    return render_template('index.html')
+    return app.send_static_file('html/index.html')
+    # return render_template('index.html')
     # return 'Hello World!'
 
+@app.route('/search', methods=['GET'])
+def search():
+    d = {'stock': None};
+    if request.method == 'GET':
+        stock = request.args.get('stock')
+        d['stock'] = stock
+    return jsonify(d)
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App

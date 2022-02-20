@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    background-image: url('./images/back.svg');
+    background-image: url('../images/back.svg');
     background-attachment: fixed;
     /*background-size: 100%;*/
     background-repeat:repeat-x;
@@ -82,7 +82,7 @@ input[type=text], select {
   /*border-radius: 4px;*/
   box-sizing: border-box;
     outline: none;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 form {
