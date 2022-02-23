@@ -37,6 +37,7 @@ function addDeleteEvent(id) {
     var elem = document.getElementById(id).getSVGDocument().querySelector("svg");
     elem.addEventListener('click', function () {
         console.log('delete');
+        setErrorBarVisibility('hidden');
         stock.value = '';
     });
 }
@@ -51,6 +52,11 @@ function setGraphAreaVisibility(status) {
     elem.style.visibility = status;
 }
 
+function setErrorBarVisibility(status) {
+    var elem = document.getElementById('error_bar');
+    elem.style.visibility = status;
+}
+
 function xhrResponseHandler(event) {
     console.log('get infos');
     var reponse_text = event.target.responseText;
@@ -60,8 +66,10 @@ function xhrResponseHandler(event) {
         console.log('hidden');
         setAllGraphHidden();
         setGraphAreaVisibility('hidden');
+        setErrorBarVisibility('visible');
     }
     else {
+        setErrorBarVisibility('hidden');
         setTitleStatus('graph_company');
         refreshGraphCompany();
         setAllGraphHidden();
