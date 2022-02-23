@@ -15,14 +15,14 @@
 # [START gae_python38_app]
 # [START gae_python3_app]
 from flask import Flask, request, jsonify
-import finnhub
+import requests
 from my_utils import extracInfo
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 app = Flask(__name__)
-finnhub_client = finnhub.Client(api_key="c87v1q2ad3iet0qj41mg")
+API_KEY = "c87v1q2ad3iet0qj41mg"
 
 
 @app.route('/')
@@ -37,7 +37,10 @@ def search():
     d = {}
     if request.method == 'GET':
         stock = request.args.get('stock')
-        infos = finnhub_client.company_profile2(symbol=stock)
+        # infos = finnhub_client.company_profile2(symbol=stock)
+        url = f'https://finnhub.io/api/v1/stock/profile2?symbol={stock}&token={API_KEY}'
+        r = requests.get(url, auth=('user', 'pass'))
+        infos = r.json()
         if len(infos) > 0:
             d = extracInfo(infos)
     return jsonify(d)
