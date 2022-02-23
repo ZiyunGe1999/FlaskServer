@@ -14,15 +14,21 @@
         </div>
         <div id="search_form">
             <form id="form_form" name="stock_form" method="get">
-                <div id="search_left">
-                    <div id="search_left_inner">
-                        <embed id="search_solid" src="static/images/search-solid.svg" type="image/svg+xml">
-                    </div>
-                </div>
-                <input type="text" id="stock" name="stock" placeholder="Enter Stock Ticker Symbol">
-                <div id="search_right">
-                    <embed id="search_times" src="static/images/times-solid.svg" type="image/svg+xml">
-                </div>
+                <table>
+                    <tr>
+                        <td class="short_td">
+                            <div id="search_left_inner">
+                                <embed id="search_solid" src="static/images/search-solid.svg" type="image/svg+xml">
+                            </div>
+                        </td>
+                        <td><input type="text" id="stock" name="stock" placeholder="Enter Stock Ticker Symbol"></td>
+                        <td class="short_td" id="last_td">
+                            <div id="search_right">
+                                <embed id="search_times" src="static/images/times-solid.svg" type="image/svg+xml">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </form>
             <div id="empty_warning">
                 <div id="empty_info">
@@ -45,7 +51,7 @@
             <div class="graph_sub" id="graph_company">
                 graph_company
                 <div class="table_line">
-                    <img id="graph_company_img" src=?>
+                    <img width="130px" id="graph_company_img" src=?>
                 </div>
                 <div class="table_line">
                     <table class="table_table">

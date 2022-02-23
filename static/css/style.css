@@ -20,6 +20,7 @@ body {
 
 #search_title {
     font-size: 200%;
+    font-weight: lighter;
 }
 
 #search_solid {
@@ -39,38 +40,53 @@ body {
     border-radius: 10px;
     /*border: 1px solid #ccc;*/
     box-shadow: 5px 5px 3px #ccc;
-    padding: 5px;
+    padding: 3px;
 }
 
-#search_left {
-    display: inline-block;
-    position: relative;
-    height: 100%;
-    width: 15px;
-    /*background-color: white;*/
-}
+/*#search_left {*/
+/*    display: inline-block;*/
+/*    position: relative;*/
+/*    height: 100%;*/
+/*    width: 15px;*/
+/*    !*background-color: white;*!*/
+/*}*/
 
 #search_left_inner {
-    margin-top: 15px;
+    margin-top: 7px;
+}
+
+#form_form > table {
+    /*margin-top: 5px;*/
+    width: 100%;
+    height: 100%;
+}
+
+.short_td {
+    width: 30px;
+}
+
+#last_td {
+    border-left: 2px solid 	#a9a9a9;
 }
 
 #search_right {
     display: inline-block;
     position: relative;
     height: 100%;
-    width: 30px;
-    border-left: 2px solid 	#a9a9a9;
+    /*width: 30px;*/
+    /*border-left: 2px solid 	#a9a9a9;*/
     /*margin: 5px;*/
 }
 
 #search_times {
     width: 15px;
-    margin-top: 15px;
-    margin-left: 70%;
+    margin-top: 7px;
+    margin-left: 3px;
+    /*margin-left: 70%;*/
 }
 
 input[type=text], select {
-  width: 80%;
+  width: 100%;
   padding: 5px 5px;
   /*margin: 15px;*/
   display: inline-block;
@@ -181,6 +197,7 @@ form {
     height: 50px;
     background-color: #F7FBF9;
     text-align: left;
+    font-weight: lighter;
 }
 
 .title {
