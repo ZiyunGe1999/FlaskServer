@@ -46,29 +46,44 @@ function setWarningBoxVisibility (status) {
     elem.style.visibility = status;
 }
 
-function sendData(form) {
-    var XHR = new XMLHttpRequest();
-    var FD  = new FormData(form);
+function setGraphAreaVisibility(status) {
+    var elem = document.getElementById('graph_area');
+    elem.style.visibility = status;
+}
 
-    // 我们定义了数据成功发送时会发生的事。
-    XHR.addEventListener("load", function(event) {
-      // alert(event.target.responseText);
-        console.log('get infos');
-        infos = JSON.parse(event.target.responseText);
+function xhrResponseHandler(event) {
+    console.log('get infos');
+    var reponse_text = event.target.responseText;
+    infos = JSON.parse(event.target.responseText);
+    console.log(reponse_text);
+    if (JSON.stringify(infos) === '{}') {
+        console.log('hidden');
+        setAllGraphHidden();
+        setGraphAreaVisibility('hidden');
+    }
+    else {
         setTitleStatus('graph_company');
         refreshGraphCompany();
         setAllGraphHidden();
         setVisible('graph_company');
+        setGraphAreaVisibility('visible');
+    }
+}
+
+function sendData(form) {
+    var XHR = new XMLHttpRequest();
+    var FD  = new FormData(form);
+
+    XHR.addEventListener("load", function (event) {
+        xhrResponseHandler(event);
     });
 
-    // 我们定义了失败的情形下会发生的事
     XHR.addEventListener("error", function(event) {
       alert('something went wrong');
     });
 
     var stock_value = FD.get('stock');
     if (stock_value.length > 0) {
-        // 我们设置了我们的请求
         XHR.open("get", "/search?stock=" + stock_value, true);
         XHR.send()
     }
@@ -82,14 +97,10 @@ function takeOverFormSubmit() {
     var form = stock_form;
     console.log('takeOverFormSubmit');
     form.addEventListener("submit", function (event) {
-        console.log('submit')
+        console.log('enter submit')
         event.preventDefault();
         sendData(form);
     });
-}
-
-function getImageUrl() {
-    return infos['logo'];
 }
 
 function setVisible(id) {
