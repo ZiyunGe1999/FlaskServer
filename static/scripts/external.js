@@ -177,6 +177,47 @@ function refreshGraphStockSummary() {
     document.getElementById('recommendation_rate4').innerHTML = infos.strongBuy;
 }
 
+function refreshGraphLatestNews() {
+    let elem = document.getElementById('news_table');
+    elem.innerHTML = '';
+    for (let i = 0; i < infos.news_list.length; i++) {
+        let tr = document.createElement('tr');
+        tr.className = 'news_line';
+
+        let td1 = document.createElement('td');
+        td1.className = 'news_image';
+        let img = document.createElement('img');
+        img.width = 80;
+        img.height = 80;
+        img.src = infos['news_list'][i].image;
+        console.log(infos['news_list'][i].image);
+        td1.appendChild(img);
+        tr.appendChild(td1);
+
+        let td2 = document.createElement('td');
+        td2.className = 'news_infos';
+        let span1 = document.createElement('span');
+        span1.className = 'news_headline';
+        span1.innerHTML = infos['news_list'][i].headline;
+        td2.appendChild(span1);
+        let span2 = document.createElement('span');
+        span2.className = 'news_date';
+        span2.innerHTML = infos['news_list'][i].datetime;
+        td2.appendChild(span2);
+        let span3 = document.createElement('span');
+        span3.className = 'news_href';
+        let a = document.createElement('a');
+        a.target = '_blank';
+        a.href = infos['news_list'][i].url;
+        a.innerHTML = 'See Original Post';
+        span3.appendChild(a);
+        td2.appendChild(span3);
+        tr.appendChild(td2);
+
+        elem.appendChild(tr);
+    }
+}
+
 function graphHandler(id) {
     console.log('handle ' + id);
     setTitleStatus(id);
@@ -185,6 +226,12 @@ function graphHandler(id) {
     }
     else if (id == 'graph_stock_summary') {
         refreshGraphStockSummary();
+    }
+    else if (id == 'graph_charts') {
+
+    }
+    else {
+        refreshGraphLatestNews();
     }
     setAllGraphHidden();
     setVisible(id);

@@ -16,8 +16,9 @@
 # [START gae_python3_app]
 from flask import Flask, request, jsonify
 import requests
-from my_utils import extracInfo
+from my_utils import extractInfo, extractNews
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
@@ -43,19 +44,27 @@ def search():
         r = requests.get(url, auth=('user', 'pass'))
         if len(r.json()) > 0:
             keys = ['logo', 'name', 'ticker', 'exchange', 'ipo', 'finnhubIndustry']
-            extracInfo(r.json(), infos, keys)
+            extractInfo(r.json(), infos, keys)
 
             url = f'https://finnhub.io/api/v1/quote?symbol={stock}&token={API_KEY}'
             r = requests.get(url, auth=('user', 'pass'))
             keys = ['t', 'pc', 'o', 'h', 'l', 'd', 'dp']
-            extracInfo(r.json(), infos, keys)
+            extractInfo(r.json(), infos, keys)
             date_time = datetime.fromtimestamp(infos['t'])
             infos['t'] = date_time.strftime('%d %B, %Y')
 
             url = f'https://finnhub.io/api/v1/stock/recommendation?symbol={stock}&token={API_KEY}'
             r = requests.get(url, auth=('user', 'pass'))
             keys = ['strongSell', 'sell', 'hold', 'buy', 'strongBuy']
-            extracInfo(r.json()[0], infos, keys)
+            extractInfo(r.json()[0], infos, keys)
+
+            today = datetime.now()
+            before_30 = today + relativedelta(days=-30)
+            today_str = today.strftime('%Y-%m-%d')
+            before_30_str = before_30.strftime('%Y-%m-%d')
+            url = f'https://finnhub.io/api/v1/company-news?symbol={stock}&from={before_30_str}&to={today_str}&token={API_KEY}'
+            r = requests.get(url, auth=('user', 'pass'))
+            extractNews(r.json(), infos)
 
     return jsonify(infos)
 

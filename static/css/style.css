@@ -267,11 +267,16 @@ form {
     /*height: 50px;*/
     text-align: center;
     visibility: hidden;
-    margin-top: 25px;
+    /*margin-top: 25px;*/
 }
 
 .table_line {
     display: block;
+    margin-top: 20px;
+}
+
+#graph_stock_summary {
+    margin-top: 25px;
 }
 
 .table_table {
@@ -365,4 +370,45 @@ form {
 
 #recommendation_trends {
     margin-top: 10px;
+}
+
+#news_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px 25px;
+}
+
+.news_line {
+    background-color: #F7FBF9;
+    height: 100px;
+}
+
+.news_line > table {
+    width: 100%;
+}
+
+.news_image {
+    width: 100px;
+}
+
+.news_infos {
+    text-align: left;
+    vertical-align: top;
+    padding-top: 10px;
+}
+
+.news_headline {
+    font-weight: bold;
+}
+
+.news_date {
+    font-weight: lighter;
+}
+
+.news_href {
+    font-weight: lighter;
+}
+
+.news_line span {
+    display: block;
 }
