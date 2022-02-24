@@ -169,6 +169,12 @@ function refreshGraphStockSummary() {
     else {
         document.getElementById('change_percent_img').src = 'static/images/RedArrowDown.png';
     }
+
+    document.getElementById('recommendation_rate0').innerHTML = infos.strongSell;
+    document.getElementById('recommendation_rate1').innerHTML = infos.sell;
+    document.getElementById('recommendation_rate2').innerHTML = infos.hold;
+    document.getElementById('recommendation_rate3').innerHTML = infos.buy;
+    document.getElementById('recommendation_rate4').innerHTML = infos.strongBuy;
 }
 
 function graphHandler(id) {

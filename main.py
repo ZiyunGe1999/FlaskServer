@@ -52,6 +52,11 @@ def search():
             date_time = datetime.fromtimestamp(infos['t'])
             infos['t'] = date_time.strftime('%d %B, %Y')
 
+            url = f'https://finnhub.io/api/v1/stock/recommendation?symbol={stock}&token={API_KEY}'
+            r = requests.get(url, auth=('user', 'pass'))
+            keys = ['strongSell', 'sell', 'hold', 'buy', 'strongBuy']
+            extracInfo(r.json()[0], infos, keys)
+
     return jsonify(infos)
 
 if __name__ == '__main__':

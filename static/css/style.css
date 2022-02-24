@@ -308,3 +308,61 @@ form {
 #change_percent {
     display: inline-block;
 }
+
+#recommendation {
+    margin-top: 20px;
+    font-weight: lighter;
+}
+
+#recommendation_table {
+    border-spacing: 0;
+}
+
+.recommendation_sides {
+    height: 40px;
+    width: 60px;
+}
+
+#recommendation_left {
+    color: #D82A38;
+}
+
+#recommendation_right {
+    color: #08E782;
+}
+
+#recommendation_bar {
+    display: inline-block;
+}
+
+.recommendation_rate {
+    height: 40px;
+    width: 40px;
+    padding: 0px;
+    font-weight: normal;
+    color: white;
+}
+
+#recommendation_rate0 {
+    background-color: #D82A38;
+}
+
+#recommendation_rate1 {
+    background-color: #A8604D;
+}
+
+#recommendation_rate2 {
+    background-color: #7A8E5F;
+}
+
+#recommendation_rate3 {
+    background-color: #42BD71;
+}
+
+#recommendation_rate4 {
+    background-color: #08E782;
+}
+
+#recommendation_trends {
+    margin-top: 10px;
+}
