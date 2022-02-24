@@ -1,8 +1,5 @@
 from typing import *
 
-def extracInfo(original_infos: Dict) -> Dict:
-    result = {}
-    key_list = ['logo', 'name', 'ticker', 'exchange', 'ipo', 'finnhubIndustry']
+def extracInfo(original_infos: Dict, updated_infos: Dict, key_list: List):
     for key in key_list:
-        result[key] = original_infos[key]
-    return result
+        updated_infos[key] = original_infos[key]

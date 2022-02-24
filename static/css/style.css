@@ -267,6 +267,7 @@ form {
     /*height: 50px;*/
     text-align: center;
     visibility: hidden;
+    margin-top: 25px;
 }
 
 .table_line {
@@ -277,7 +278,7 @@ form {
     /*display: inline-block;*/
     margin: auto;
     position: relative;
-    width: 70%;
+    width: 60%;
 }
 
 .table_table td {
@@ -298,4 +299,12 @@ form {
 .td2 {
     text-align: left;
     font-weight: lighter;
+}
+
+#change {
+    display: inline-block;
+}
+
+#change_percent {
+    display: inline-block;
 }

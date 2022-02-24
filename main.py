@@ -17,6 +17,7 @@
 from flask import Flask, request, jsonify
 import requests
 from my_utils import extracInfo
+from datetime import datetime
 
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
@@ -34,16 +35,24 @@ def index():
 
 @app.route('/search', methods=['GET'])
 def search():
-    d = {}
+    infos = {}
     if request.method == 'GET':
         stock = request.args.get('stock')
-        # infos = finnhub_client.company_profile2(symbol=stock)
+        stock = stock.upper()
         url = f'https://finnhub.io/api/v1/stock/profile2?symbol={stock}&token={API_KEY}'
         r = requests.get(url, auth=('user', 'pass'))
-        infos = r.json()
-        if len(infos) > 0:
-            d = extracInfo(infos)
-    return jsonify(d)
+        if len(r.json()) > 0:
+            keys = ['logo', 'name', 'ticker', 'exchange', 'ipo', 'finnhubIndustry']
+            extracInfo(r.json(), infos, keys)
+
+            url = f'https://finnhub.io/api/v1/quote?symbol={stock}&token={API_KEY}'
+            r = requests.get(url, auth=('user', 'pass'))
+            keys = ['t', 'pc', 'o', 'h', 'l', 'd', 'dp']
+            extracInfo(r.json(), infos, keys)
+            date_time = datetime.fromtimestamp(infos['t'])
+            infos['t'] = date_time.strftime('%d %B, %Y')
+
+    return jsonify(infos)
 
 if __name__ == '__main__':
     # This is used when running locally only. When deploying to Google App

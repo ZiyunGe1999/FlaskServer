@@ -142,10 +142,33 @@ function setTitleStatus(id) {
 function refreshGraphCompany() {
     document.getElementById('graph_company_img').src = infos['logo'];
     document.getElementById('company_name').innerHTML = infos['name'];
-    document.getElementById('stock_ticker_symbol').innerHTML = infos['ticker'];
+    document.getElementById('stock_ticker_symbol1').innerHTML = infos['ticker'];
     document.getElementById('stock_exchange_code').innerHTML = infos['exchange'];
     document.getElementById('company_start_date').innerHTML = infos['ipo'];
     document.getElementById('category').innerHTML = infos['finnhubIndustry'];
+}
+
+function refreshGraphStockSummary() {
+    document.getElementById('stock_ticker_symbol2').innerHTML = infos['ticker'];
+    document.getElementById('trading_day').innerHTML = infos['t'];
+    document.getElementById('previous_closing_price').innerHTML = infos['pc'];
+    document.getElementById('opening_price').innerHTML = infos['o'];
+    document.getElementById('high_price').innerHTML = infos['h'];
+    document.getElementById('low_price').innerHTML = infos['l'];
+    document.getElementById('change').innerHTML = infos['d'];
+    if (infos['d'] > 0) {
+        document.getElementById('change_img').src = 'static/images/GreenArrowUp.png';
+    }
+    else {
+        document.getElementById('change_img').src = 'static/images/RedArrowDown.png';
+    }
+    document.getElementById('change_percent').innerHTML = infos['dp'];
+    if (infos['dp'] > 0) {
+        document.getElementById('change_percent_img').src = 'static/images/GreenArrowUp.png';
+    }
+    else {
+        document.getElementById('change_percent_img').src = 'static/images/RedArrowDown.png';
+    }
 }
 
 function graphHandler(id) {
@@ -153,6 +176,9 @@ function graphHandler(id) {
     setTitleStatus(id);
     if (id == 'graph_company') {
         refreshGraphCompany();
+    }
+    else if (id == 'graph_stock_summary') {
+        refreshGraphStockSummary();
     }
     setAllGraphHidden();
     setVisible(id);
