@@ -412,3 +412,14 @@ form {
 .news_line span {
     display: block;
 }
+
+#container {
+    height: 400px;
+    min-width: 310px;
+    margin-top: 30px;
+}
+
+.highcharts-subtitle > a > tspan {
+    text-decoration: underline;
+    color: blue;
+}

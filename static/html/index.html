@@ -4,6 +4,10 @@
 <head>
     <title>HW6</title>
     <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
     <script type="text/javascript" src="static/scripts/external.js"></script>
 </head>
 
@@ -137,7 +141,9 @@
                     </div>
                 </div>
             </div>
-            <div class="graph_sub" id="graph_charts">graph_charts</div>
+            <div class="graph_sub" id="graph_charts">
+                <div id="container"></div>
+            </div>
             <div class="graph_sub" id="graph_latest_news">
                 <div>
                     <table id="news_table">

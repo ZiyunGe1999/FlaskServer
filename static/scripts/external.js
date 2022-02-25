@@ -5,6 +5,7 @@ var title_status = {
     'graph_charts' : false,
     'graph_latest_news' : false
 };
+var stock_value;
 
 var selected = '#D2D1D2';
 
@@ -90,7 +91,7 @@ function sendData(form) {
       alert('something went wrong');
     });
 
-    var stock_value = FD.get('stock');
+    stock_value = FD.get('stock');
     if (stock_value.length > 0) {
         XHR.open("get", "/search?stock=" + stock_value, true);
         XHR.send()
@@ -218,9 +219,141 @@ function refreshGraphLatestNews() {
     }
 }
 
+function refreshGraphCharts() {
+    Highcharts.stockChart('container', {
+        title: {
+            text: 'Stock Price ' + infos.ticker + ' ' + infos.charts_title_time
+        },
+
+        subtitle: {
+            text: '<a target="_blank" href="https://finnhub.io/">Source: Finnhub</a>'
+        },
+
+        xAxis: {
+            gapGridLineWidth: 0
+        },
+
+        yAxis: [{ // Primary yAxis
+            labels: {
+                formatter: function () {
+                    return this.value / 1000000 + 'M';
+                },
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            title: {
+                text: 'Volume',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            }
+        }, { // Secondary yAxis
+            title: {
+                text: 'Stock Price',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            labels: {
+                format: '{value}',
+                style: {
+                    color: Highcharts.getOptions().colors[1]
+                }
+            },
+            opposite: false
+        }],
+
+        rangeSelector: {
+            buttons: [{
+                type: 'day',
+                count: 7,
+                text: '7d'
+            }, {
+                type: 'day',
+                count: 15,
+                text: '15d'
+            }, {
+                type: 'month',
+                count: 1,
+                text: '1m'
+            }, {
+                type: 'month',
+                count: 3,
+                text: '3m'
+            }, {
+                type: 'month',
+                count: 6,
+                text: '6m'
+            }],
+            selected: 1,
+            inputEnabled: false
+        },
+
+        tooltip: {
+            shared: true
+        },
+
+        pointPlacement: 'on',
+
+        series: [{
+            name: 'Stock Price',
+            type: 'area',
+            data: infos.charts_stock_price,
+            gapSize: 5,
+            tooltip: {
+                valueDecimals: 2
+            },
+            yAxis: 1,
+            fillColor: {
+                linearGradient: {
+                    x1: 0,
+                    y1: 0,
+                    x2: 0,
+                    y2: 1
+                },
+                stops: [
+                    [0, Highcharts.getOptions().colors[0]],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                ]
+            },
+            threshold: null
+        }, {
+            name: 'Volume',
+            type: 'column',
+            data: infos.charts_volume,
+            gapSize: 5,
+            tooltip: {
+                valueDecimals: 2
+            },
+            pointWidth: 4,
+            min: 0,
+            fillColor: {
+                linearGradient: {
+                    x1: 0,
+                    y1: 0,
+                    x2: 0,
+                    y2: 1
+                },
+                stops: [
+                    [0, Highcharts.getOptions().colors[0]],
+                    [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                ]
+            },
+            threshold: null
+        }]
+    });
+}
+
+function destroyCharts() {
+    let elem = document.getElementById('container');
+    elem.innerHTML = '';
+}
+
 function graphHandler(id) {
     console.log('handle ' + id);
     setTitleStatus(id);
+    destroyCharts();
     if (id == 'graph_company') {
         refreshGraphCompany();
     }
@@ -228,7 +361,7 @@ function graphHandler(id) {
         refreshGraphStockSummary();
     }
     else if (id == 'graph_charts') {
-
+        refreshGraphCharts();
     }
     else {
         refreshGraphLatestNews();

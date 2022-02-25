@@ -66,6 +66,16 @@ def search():
             r = requests.get(url, auth=('user', 'pass'))
             extractNews(r.json(), infos)
 
+            before_6_months_and_1_day = today + relativedelta(months=-6, days=-1)
+            url = f'https://finnhub.io/api/v1/stock/candle?symbol={stock}&resolution=D&from={int(before_6_months_and_1_day.timestamp())}&to={int(today.timestamp())}&token={API_KEY}'
+            r = requests.get(url, auth=('user', 'pass'))
+            times = r.json()['t']
+            stock_price = r.json()['c']
+            volume = r.json()['v']
+            infos['charts_stock_price'] = [[times[i] * 1000, stock_price[i]] for i in range(len(times))]
+            infos['charts_volume'] = [[times[i] * 1000, volume[i]] for i in range(len(times))]
+            infos['charts_title_time'] = before_6_months_and_1_day.strftime('%Y-%m-%d')
+
     return jsonify(infos)
 
 if __name__ == '__main__':
