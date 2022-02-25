@@ -286,7 +286,7 @@ function refreshGraphCharts() {
                 count: 6,
                 text: '6m'
             }],
-            selected: 1,
+            selected: 0,
             inputEnabled: false
         },
 
